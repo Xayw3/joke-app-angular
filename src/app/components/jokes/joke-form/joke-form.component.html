@@ -1,1 +1,5 @@
-<p>joke-form works!</p>
+<form [formGroup]="jokeForm">
+    <input [formControlName]="'question'" type="text">
+    <input [formControlName]="'answer'" type="text">
+    <button (click)="addJoke()" type="button">Add Joke</button>
+</form>

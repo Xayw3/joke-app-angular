@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Joke } from 'src/app/models/joke.model';
 
 @Component({
   selector: 'app-joke-card',
   templateUrl: './joke-card.component.html',
   styleUrls: ['./joke-card.component.scss']
 })
-export class JokeCardComponent implements OnInit {
+export class JokeCardComponent {
+  @Input()
+  joke?: Joke;
 
-  constructor() { }
+  @Output()
+  deleteJokeEvent = new EventEmitter<null>()
 
-  ngOnInit(): void {
+  deleteJoke(): void {
+    this.deleteJokeEvent.emit();
   }
 
+  showAnswer = false;
+
+  toggleAnswer(): void {
+    this.showAnswer = !this.showAnswer
+  }
 }

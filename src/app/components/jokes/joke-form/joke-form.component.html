@@ -1,5 +1,15 @@
-<form [formGroup]="jokeForm">
-    <input [formControlName]="'question'" type="text">
-    <input [formControlName]="'answer'" type="text">
-    <button (click)="addJoke()" type="button">Add Joke</button>
+<form class="jokes-form" [formGroup]="jokeForm">
+    <div class="jokes-form__item">
+        <p class="jokes-form__text">
+            Question
+        </p>
+        <input class="jokes-form__input" [formControlName]="'question'" type="text" placeholder="Enter the question">
+    </div>
+    <div class="jokes-form__item">
+        <p class="jokes-form__text">
+            Answer
+        </p>
+        <input class="jokes-form__input" [formControlName]="'answer'" type="text" placeholder="Enter the answer">
+    </div>
+    <button class="jokes-form__btn btn" [disabled]="disabledButton()" (click)="addJoke()" type="button">Create</button>
 </form>

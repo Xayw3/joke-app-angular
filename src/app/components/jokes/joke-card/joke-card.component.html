@@ -1,1 +1,8 @@
-<p>joke-card works!</p>
+<div>
+    <div class="joke-card" *ngIf="joke?.question">
+        <p class="joke-card__text">{{ joke?.question }}</p>
+        <p class="joke-card__text" *ngIf="showAnswer">{{ joke?.answer }}</p>
+        <button class="btn btn-answer" type="button" (click)="toggleAnswer()">Tell me</button>
+        <button class="btn btn-remove" type="button" (click)="deleteJoke()">Delete</button>
+    </div>
+</div>

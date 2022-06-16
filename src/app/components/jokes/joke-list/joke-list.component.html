@@ -1,1 +1,7 @@
-<p>joke-list works!</p>
+<div *ngIf="jokes">
+    <app-joke-card 
+    *ngFor="let joke of jokes; let i = index" 
+    [joke]="joke"
+    (deleteJokeEvent)="deleteJoke(i)"
+    ></app-joke-card>
+</div>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Joke } from 'src/app/models/joke.model';
 
 @Component({
   selector: 'app-joke-form',
@@ -7,6 +8,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./joke-form.component.scss']
 })
 export class JokeFormComponent implements OnInit {
+  @Output() 
+  addJokeEvent = new EventEmitter<Joke>()
+
   jokeForm: FormGroup = this.fb.group({});
 
   constructor(private fb: FormBuilder) {};
@@ -17,12 +21,21 @@ export class JokeFormComponent implements OnInit {
 
   buildForm(): void {
     this.jokeForm = this.fb.group({
-      question: "",
-      answer: ""
-    })
+      question: ["", [Validators.required]],
+      answer: ["", [Validators.required]]
+    });
+  };
+
+  disabledButton() {
+    if (this.jokeForm.valid) {
+      return false;
+    } return true
   };
 
   addJoke(): void {
-    console.log(this.jokeForm.value.answer);
+    if (this.jokeForm.valid) {
+      this.addJokeEvent.emit(this.jokeForm.value);
+      this.jokeForm.reset();
+    };
   };
 }

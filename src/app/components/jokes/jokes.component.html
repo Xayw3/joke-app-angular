@@ -1,4 +1,5 @@
-<div>
-    <app-joke-form></app-joke-form>
-    <app-joke-list></app-joke-list>
+<div class="jokes-wrapper">
+    <h1 class="jokes-title">Create a joke</h1>
+    <app-joke-form (addJokeEvent)="addJoke($event)"></app-joke-form>
+    <app-joke-list (deleteJokeEvent)="deleteJoke($event)" [jokes]="jokes"></app-joke-list>
 </div>
